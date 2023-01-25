@@ -22,6 +22,7 @@ userController.post("/signup", (req, res) => {
 });
 
 userController.post("/login", (req, res) => {
+  const { email, password } = req.body;
   res.send("login");
 });
 
