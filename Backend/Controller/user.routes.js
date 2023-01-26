@@ -21,9 +21,21 @@ userController.post("/signup", (req, res) => {
   });
 });
 
-userController.post("/login", (req, res) => {
-  const { email, password } = req.body;
-  res.send("login");
+userController.post("/login", async (req, res) => {
+  const { email, password } = req.body; // collect value from frontend
+  const user = await UserModel.findOne({ email }); // finding the correct credential
+  const hash = user.password; // comparing password
+  bcrypt.compare(password, hash, function (err, result) {
+    if (err) {
+      res.send("Something Went wrong");
+    }
+    if (result) {
+      //Incase password match
+    } else {
+      //Incase of error
+      res.send("Invalid Credentials");
+    }
+  });
 });
 
 module.exports = {
