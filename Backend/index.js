@@ -2,8 +2,8 @@ const express = require("express");
 
 const { userController } = require("./Controller/user.routes");
 const { notesController } = require("./Controller/Notes.routes");
-
 const { connection } = require("./Config/db");
+const { authentication } = require("./Middleware/Authentication");
 const PORT = 8080;
 
 const app = express();
@@ -15,6 +15,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userController);
+
+app.use(authentication);
 
 app.use("/notes", notesController);
 

@@ -5,6 +5,10 @@ const { NotesModel } = require("../Models/Notes.model");
 
 const notesController = Router();
 
+notesController.get("/", (req, res) => {
+  res.send("Notes");
+});
+
 module.exports = {
-    notesController,
+  notesController,
 };
