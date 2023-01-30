@@ -1,5 +1,7 @@
 const { Router } = require("express");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 const { UserModel } = require("../Models/User.model");
 const userController = Router();
@@ -11,9 +13,9 @@ userController.post("/signup", (req, res) => {
     if (err) {
       res.send("Something Went wrong");
     }
-    const user = new UserModel.create({
+    const user = new UserModel({
       email,
-      password,
+      password: hash,
       age,
     });
     await user.save();
@@ -31,6 +33,8 @@ userController.post("/login", async (req, res) => {
     }
     if (result) {
       //Incase password match
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET);
+      res.send({ message: "Login Successfull", token });
     } else {
       //Incase of error
       res.send("Invalid Credentials");

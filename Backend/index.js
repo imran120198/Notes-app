@@ -1,6 +1,8 @@
 const express = require("express");
 
 const { userController } = require("./Controller/user.routes");
+const { notesController } = require("./Controller/Notes.routes");
+
 const { connection } = require("./Config/db");
 const PORT = 8080;
 
@@ -14,7 +16,7 @@ app.get("/", (req, res) => {
 
 app.use("/user", userController);
 
-// app.use("/notes", notesController);
+app.use("/notes", notesController);
 
 app.listen(PORT, async () => {
   try {
@@ -22,7 +24,7 @@ app.listen(PORT, async () => {
     console.log("Connected to Database");
   } catch (err) {
     console.log("Not connected to database");
-    console.log(err)
+    console.log(err);
   }
   console.log(`Listing in ${PORT}`);
 });
