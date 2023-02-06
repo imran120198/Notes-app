@@ -1,5 +1,5 @@
 const express = require("express");
-
+const cors = require("cors");
 const { userController } = require("./Controller/user.routes");
 const { notesController } = require("./Controller/Notes.routes");
 const { connection } = require("./Config/db");
@@ -13,6 +13,8 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.send("Welcome Home");
 });
+
+app.use(cors());
 
 app.use("/user", userController);
 
