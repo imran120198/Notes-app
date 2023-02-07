@@ -12,7 +12,7 @@ function Register() {
       age,
     };
 
-    fetch("http://localhost:8080/user/signup", {
+    fetch("https://notes-app-vuqr.onrender.com/user/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

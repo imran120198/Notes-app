@@ -5,7 +5,7 @@ function Notes() {
   const [notes, setNotes] = useState([]);
   const token = localStorage.getItem("psc_app_token");
   const getData = () => {
-    fetch("http://localhost:8080/notes", {
+    fetch("https://notes-app-vuqr.onrender.com/notes", {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
